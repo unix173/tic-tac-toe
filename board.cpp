@@ -3,7 +3,7 @@
 #include <iostream>
 
 Board::Board():
-    fieldsMarked(0),
+    number_of_marked_fields(0),
     fields{{0,0,0},{0,0,0},{0,0,0}}
 {}
 
@@ -37,6 +37,7 @@ bool Board::fieldMarked(int field){
 bool Board::markField(int field, int symbol){
     if(!fieldMarked(field)){
         *getFieldPtrByNumber(field) = symbol;
+        ++number_of_marked_fields;
         return true;
     }
     return false;

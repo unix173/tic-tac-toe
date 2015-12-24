@@ -9,13 +9,12 @@ int main()
     game->initializePlayers();
     Player* winner = game->startGame();
     if(winner == nullptr){
-        cout<<"Game Draw"<<endl;
+        cout<<"Game Draw"<<endl<<endl;
     }
     else{
-        cout<<"Game won by player: "<<winner->get_name()<<" with symbol: "<<winner->get_symbol()<<endl;
+        cout<<"Game won by player: '"<<winner->get_name()<<"' with symbol: "<<winner->get_symbol()<<endl;
         winner->increaseScore();
     }
-
 
     delete game;
     return 0;

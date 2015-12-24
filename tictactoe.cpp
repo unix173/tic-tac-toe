@@ -13,7 +13,9 @@ TicTacToe::TicTacToe()
 
 TicTacToe::~TicTacToe()
 {
-
+    delete board;
+    delete player1;
+    delete player2;
 }
 
 
@@ -31,29 +33,30 @@ void TicTacToe::makeMove(const Player* player){
         std::cout<<"Pick a field:[1-9]"<<std::endl;
         int field;
         std::cin>>field;
-        std::cout<<"Field:"<<field<<std::endl;
         stop = board->markField(field, player->get_symbol());
         board->printBoard();
     }
-    std::cout<<"Player:  "<<player->get_name()<<" made a move"<<std::endl;
 }
 
 Player* TicTacToe::startGame(){
     std::cout<<"Game Started"<<std::endl;
     bool stop = false;
     while(stop != true){
-        if(board->all_fields_marked()){
-            return nullptr;
-        }
         makeMove(player1);
         stop = board->threeInARow(player1->get_symbol());
         if(stop == true){
             return player1;
         }
+        if(board->all_fields_marked() == true){
+            return nullptr;
+        }
         makeMove(player2);
         stop = board->threeInARow(player2->get_symbol());
         if(stop == true){
             return player2;
+        }
+        if(board->all_fields_marked() == true){
+            return nullptr;
         }
     }
 }
