@@ -7,3 +7,5 @@
 *.exe
 *.app
 *.out
+build/*
+!build/build.sh
