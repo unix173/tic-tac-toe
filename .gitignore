@@ -9,3 +9,5 @@
 *.out
 build/*
 !build/build.sh
+!build/delete.sh
+
