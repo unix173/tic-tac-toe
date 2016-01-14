@@ -1,71 +1,82 @@
 #include "board.h"
-
+#include "player.h"
 #include <iostream>
 
+
 Board::Board():
-    number_of_marked_fields(0),
-    fields{{0,0,0},{0,0,0},{0,0,0}}
+    num_marked_fields(0),
+    fields{"0","0","0","0","0","0","0","0","0"}
 {}
 
-int* Board::getFieldPtrByNumber(int field){
-    switch(field){
-        case 1: return &fields[2][0];
-        case 2: return &fields[2][1];
-        case 3: return &fields[2][2];
-        case 4: return &fields[1][0];
-        case 5: return &fields[1][1];
-        case 6: return &fields[1][2];
-        case 7: return &fields[0][0];
-        case 8: return &fields[0][1];
-        case 9: return &fields[0][2];
-        default : return nullptr;
-    }
+bool Board::fieldMarked(int field_num) const{
+  return fields[field_num] != "0";
 }
 
-bool Board::fieldMarked(int field){
-    int board_field = *getFieldPtrByNumber(field);
-    for(int row = 0; row < BOARD_DIMENSION; ++row){
-        for(int column = 0; column < BOARD_DIMENSION; ++column){
-            if (board_field == 1 || board_field == 2){
-                return true;
-            }
-        }
-    }
+bool Board::markField(int field_num, const Player& p){
+  if(!fieldMarked(field_num)){
+    this->fields[field_num] = p.get_symbol();
+    this->increaseMarkedFields();
+    return true;
+  }
+  else{
     return false;
+  }
 }
 
-bool Board::markField(int field, int symbol){
-    if(!fieldMarked(field)){
-        *getFieldPtrByNumber(field) = symbol;
-        ++number_of_marked_fields;
-        return true;
-    }
-    return false;
+void Board::increaseMarkedFields(){
+    ++this->num_marked_fields;
 }
 
+bool Board::all_fields_marked()const {
+  return num_marked_fields == BOARD_DIMENSION * BOARD_DIMENSION;
+}
+ 
 void Board::printBoard()const{
-    for(int row = 0; row < BOARD_DIMENSION; ++row){
-        for(int column = 0; column < BOARD_DIMENSION; ++column){
-            std::cout<<"\t"<<fields[row][column];
-        }
+    //std::cout << "String board" << std::endl;
+    for(int i = 0; i < BOARD_DIMENSION * BOARD_DIMENSION; ++i){
+	  if (i % 3 ==  0) {
+	    std::cout<< std::endl;
+	  }
+            std::cout<<"\t"<<fields[i];
+	}  
         std::cout<<std::endl;
-    }
 }
 
-bool Board::threeInARow(int symbol)const{
+bool Board::gameWon(const Player& p)const{
     return  (
-                //rows
-                (fields[0][0] == symbol && fields[0][1] == symbol && fields[0][2] == symbol) ||
-                (fields[1][0] == symbol && fields[1][1] == symbol && fields[1][2] == symbol) ||
-                (fields[2][0] == symbol && fields[2][1] == symbol && fields[2][2] == symbol) ||
-                //columns
-                (fields[0][0] == symbol && fields[1][0] == symbol && fields[2][0] == symbol) ||
-                (fields[0][1] == symbol && fields[1][1] == symbol && fields[2][1] == symbol) ||
-                (fields[0][2] == symbol && fields[1][2] == symbol && fields[2][2] == symbol) ||
-                //diagonals
-                (fields[0][0] == symbol && fields[1][1] == symbol && fields[2][2] == symbol) ||
-                (fields[2][0] == symbol && fields[1][1] == symbol && fields[0][2] == symbol)
-            );
+      //rows
+      (fields[0] == p.get_symbol()  &&
+       fields[1] == p.get_symbol()  &&
+       fields[2] == p.get_symbol()) ||
+       
+      (fields[3] == p.get_symbol()  &&
+       fields[4] == p.get_symbol()  &&
+       fields[5] == p.get_symbol()) ||
+       
+      (fields[6] == p.get_symbol()  &&
+       fields[7] == p.get_symbol()  &&
+       fields[8] == p.get_symbol()) ||
+      //columns
+      (fields[0] == p.get_symbol()   &&
+       fields[3] == p.get_symbol()   &&
+       fields[6] == p.get_symbol())  ||
+      
+      (fields[3] == p.get_symbol()  &&
+       fields[4] == p.get_symbol()  &&
+       fields[5] == p.get_symbol()) ||
+       
+      (fields[6] == p.get_symbol()  &&
+       fields[7] == p.get_symbol()  &&
+       fields[8] == p.get_symbol()) ||
+      //diagonals
+      (fields[0] == p.get_symbol()  &&
+       fields[4] == p.get_symbol()  &&
+       fields[8] == p.get_symbol()) ||
+      
+      (fields[6] == p.get_symbol()  &&
+       fields[4] == p.get_symbol()  &&
+       fields[2] == p.get_symbol())
+  );
 }
 
 

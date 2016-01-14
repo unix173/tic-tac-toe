@@ -2,21 +2,25 @@
 #define BOARD_H
 
 #include <memory>
+#include <string>
+#include "player.h"
+
+class Player;
 
 class Board
 {
 public:
     Board();
-    bool fieldMarked(int field);
-    bool markField(int field, int symbol);
+    bool fieldMarked(int field_num)const;
+    bool markField(int field_num, const Player& p);
     void printBoard()const;
-    int* getFieldPtrByNumber(int field);
-    bool all_fields_marked()const {return number_of_marked_fields == BOARD_DIMENSION * BOARD_DIMENSION;}
-    bool threeInARow(int symbol)const;
+    bool all_fields_marked()const; 
+    void increaseMarkedFields();
+    bool gameWon(const Player& p)const;
 private:
-    static const int BOARD_DIMENSION = 3;
-    int fields[BOARD_DIMENSION][BOARD_DIMENSION];
-    int number_of_marked_fields;
+    static const int BOARD_DIMENSION{3};
+    std::string fields[9];
+    int num_marked_fields;
 };
 
 #endif // BOARD_H

@@ -1,38 +1,32 @@
 #include "player.h"
-
 #include <iostream>
+#include <sstream>
+#include <string>
 
-Player::Player()
-{}
-
-Player::Player(const std::string& name,int symbol):
+Player::Player(const std::string& name,const std::string& symbol):
     name(name),symbol(symbol)
-{
-    score = 0;
+{} 
+
+bool Player::makeMove(Board& board){
+  while(!board.markField(this->getUserChoice(),*this)){
+    std::cout<<"Field already marked"<<std::endl;
+  };
+  std::cout<<"Move made"<<std::endl;
+  return true;
 }
 
-void Player::increaseScore(){
-    score += 100;
+int Player::getUserChoice()const{
+  std::string line;
+  int number;
+  while(
+    std::cout<<"Make a move:"    &&
+    std::getline(std::cin, line) &&
+    !(std::istringstream(line) >> number)
+  ){
+    std::cerr<<"Invalid input. Please try again"<<std::endl;
+  }
+  return number - 1;
 }
 
-void Player::setPlayerInfo(){
 
-    //TODO filter bad input
-
-    std::string name;
-    int symbol;
-
-    std::cout<<"Enter player name:";
-    std::cin>>name;
-    std::cout<<"Enter player symbol:";
-    std::cin>>symbol;
-
-    set_name(name);
-    set_symbol(symbol);
-
-    std::cout<<"----------------------------------"<<std::endl;
-    std::cout<<"player name:"  <<get_name()  <<std::endl;
-    std::cout<<"player symbol:"<<get_symbol()<<std::endl;
-    std::cout<<"----------------------------------"<<std::endl;
-}
 
