@@ -12,6 +12,7 @@ class Board
 public:
     Board();
     bool fieldMarked(int field_num)const;
+    std::string getFieldSymbol(int field_num)const;
     bool markField(int field_num, const Player& p);
     void printBoard()const;
     bool all_fields_marked()const; 

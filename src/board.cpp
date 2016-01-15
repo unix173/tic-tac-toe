@@ -11,7 +11,9 @@ Board::Board():
 bool Board::fieldMarked(int field_num) const{
   return fields[field_num] != "0";
 }
-
+std::string Board::getFieldSymbol(int field_num)const{
+    return this->fields[field_num];
+}
 bool Board::markField(int field_num, const Player& p){
   if(!fieldMarked(field_num)){
     this->fields[field_num] = p.get_symbol();

@@ -13,6 +13,7 @@ build/*
 *.creator*
 *.files
 *.includes
+*.autosave
 !build/build.sh
 !build/delete.sh
 
