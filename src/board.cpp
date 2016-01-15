@@ -61,12 +61,12 @@ bool Board::gameWon(const Player& p)const{
        fields[3] == p.get_symbol()   &&
        fields[6] == p.get_symbol())  ||
       
-      (fields[3] == p.get_symbol()  &&
+      (fields[1] == p.get_symbol()  &&
        fields[4] == p.get_symbol()  &&
-       fields[5] == p.get_symbol()) ||
+       fields[7] == p.get_symbol()) ||
        
-      (fields[6] == p.get_symbol()  &&
-       fields[7] == p.get_symbol()  &&
+      (fields[2] == p.get_symbol()  &&
+       fields[5] == p.get_symbol()  &&
        fields[8] == p.get_symbol()) ||
       //diagonals
       (fields[0] == p.get_symbol()  &&
