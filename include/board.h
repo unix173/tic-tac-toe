@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <string>
-#include "player.h"
 
 class Player;
 

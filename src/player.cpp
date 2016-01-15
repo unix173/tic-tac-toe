@@ -1,4 +1,5 @@
 #include "player.h"
+#include "board.h"
 #include <iostream>
 #include <sstream>
 #include <string>

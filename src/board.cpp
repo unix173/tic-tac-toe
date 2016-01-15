@@ -2,7 +2,6 @@
 #include "player.h"
 #include <iostream>
 
-
 Board::Board():
     num_marked_fields(0),
     fields{"0","0","0","0","0","0","0","0","0"}

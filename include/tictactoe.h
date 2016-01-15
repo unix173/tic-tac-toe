@@ -1,8 +1,8 @@
 #ifndef TICTACTOE_H
 #define TICTACTOE_H
 
-#include "player.h"
-#include "board.h"
+class Board;
+class Player;
 
 class TicTacToe
 {
