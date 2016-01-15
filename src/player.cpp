@@ -21,7 +21,8 @@ int Player::getUserChoice()const{
   while(
     std::cout<<"Make a move:"    &&
     std::getline(std::cin, line) &&
-    !(std::istringstream(line) >> number)
+    (!(std::istringstream(line) >> number) ||
+     !(number > 0 && number < 10))
   ){
     std::cerr<<"Invalid input. Please try again"<<std::endl;
   }

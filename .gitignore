@@ -8,6 +8,11 @@
 *.app
 *.out
 build/*
+*.config
+*.creator
+*.creator*
+*.files
+*.includes
 !build/build.sh
 !build/delete.sh
 
