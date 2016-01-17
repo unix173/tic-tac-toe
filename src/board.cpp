@@ -1,5 +1,4 @@
 #include "board.h"
-#include "player.h"
 #include <iostream>
 
 Board::Board():
@@ -13,9 +12,9 @@ bool Board::fieldMarked(int field_num) const{
 std::string Board::getFieldSymbol(int field_num)const{
     return this->fields[field_num];
 }
-bool Board::markField(int field_num, const Player& p){
+bool Board::markField(int field_num, const std::string& s){
   if(!fieldMarked(field_num)){
-    this->fields[field_num] = p.get_symbol();
+    this->fields[field_num] = s;
     this->increaseMarkedFields();
     return true;
   }
@@ -33,7 +32,6 @@ bool Board::all_fields_marked()const {
 }
  
 void Board::printBoard()const{
-    //std::cout << "String board" << std::endl;
     for(int i = 0; i < BOARD_DIMENSION * BOARD_DIMENSION; ++i){
 	  if (i % 3 ==  0) {
 	    std::cout<< std::endl;
@@ -43,40 +41,40 @@ void Board::printBoard()const{
         std::cout<<std::endl;
 }
 
-bool Board::gameWon(const Player& p)const{
+bool Board::gameWon(const std::string& s)const{
     return  (
       //rows
-      (fields[0] == p.get_symbol()  &&
-       fields[1] == p.get_symbol()  &&
-       fields[2] == p.get_symbol()) ||
+      (fields[0] == s  &&
+       fields[1] == s  &&
+       fields[2] == s) ||
        
-      (fields[3] == p.get_symbol()  &&
-       fields[4] == p.get_symbol()  &&
-       fields[5] == p.get_symbol()) ||
+      (fields[3] == s  &&
+       fields[4] == s  &&
+       fields[5] == s) ||
        
-      (fields[6] == p.get_symbol()  &&
-       fields[7] == p.get_symbol()  &&
-       fields[8] == p.get_symbol()) ||
+      (fields[6] == s  &&
+       fields[7] == s  &&
+       fields[8] == s) ||
       //columns
-      (fields[0] == p.get_symbol()   &&
-       fields[3] == p.get_symbol()   &&
-       fields[6] == p.get_symbol())  ||
+      (fields[0] == s   &&
+       fields[3] == s   &&
+       fields[6] == s)  ||
       
-      (fields[1] == p.get_symbol()  &&
-       fields[4] == p.get_symbol()  &&
-       fields[7] == p.get_symbol()) ||
+      (fields[1] == s  &&
+       fields[4] == s  &&
+       fields[7] == s) ||
        
-      (fields[2] == p.get_symbol()  &&
-       fields[5] == p.get_symbol()  &&
-       fields[8] == p.get_symbol()) ||
+      (fields[2] == s  &&
+       fields[5] == s  &&
+       fields[8] == s) ||
       //diagonals
-      (fields[0] == p.get_symbol()  &&
-       fields[4] == p.get_symbol()  &&
-       fields[8] == p.get_symbol()) ||
+      (fields[0] == s  &&
+       fields[4] == s  &&
+       fields[8] == s) ||
       
-      (fields[6] == p.get_symbol()  &&
-       fields[4] == p.get_symbol()  &&
-       fields[2] == p.get_symbol())
+      (fields[6] == s  &&
+       fields[4] == s  &&
+       fields[2] == s)
   );
 }
 

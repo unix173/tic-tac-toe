@@ -9,7 +9,7 @@ Player::Player(const std::string& name,const std::string& symbol):
 {} 
 
 bool Player::makeMove(Board& board){
-  while(!board.markField(this->getUserChoice(),*this)){
+  while(!board.markField(this->getUserChoice(),this->get_symbol())){
     std::cout<<"Field already marked"<<std::endl;
   };
   std::cout<<"Move made"<<std::endl;

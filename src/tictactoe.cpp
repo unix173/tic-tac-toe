@@ -24,7 +24,7 @@ void TicTacToe::startGame(){
       std::cout<<"Draw"<<std::endl;
      return;
     }	
-    if(board->gameWon(*player1)){
+    if(board->gameWon(player1->get_symbol())){
       std::cout<<"Player 1 won the game"<<std::endl;
       return;
     }
@@ -34,7 +34,7 @@ void TicTacToe::startGame(){
       std::cout<<"Draw"<<std::endl;
      return;
     }
-    if(board->gameWon(*player2)){
+    if(board->gameWon(player2->get_symbol())){
       std::cout<<"Player 2 won the game"<<std::endl;
       return;
     }
