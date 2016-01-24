@@ -8,7 +8,7 @@ class Board;
 class Player
 {
 public:
-    Player();
+    Player()=delete;
     Player(const std::string& name, const std::string& symbol);
     virtual ~Player();
     virtual bool makeMove(Board& board)=0;

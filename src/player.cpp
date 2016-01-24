@@ -4,10 +4,6 @@
 #include <sstream>
 #include <string>
 
-Player::Player(){
-
-}
-
 Player::Player(const std::string& name,const std::string& symbol):
     name(name),symbol(symbol)
 {} 

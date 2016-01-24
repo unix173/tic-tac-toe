@@ -7,8 +7,8 @@
 
 
 HumanPlayer::~HumanPlayer(){
-    std::cout<<"Human Player deleted"<<std::endl;
 }
+
 HumanPlayer::HumanPlayer(const std::string& name,const std::string& symbol):
     Player(name,symbol)
 {}
