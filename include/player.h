@@ -8,13 +8,13 @@ class Board;
 class Player
 {
 public:
-    Player() ;
+    Player();
     Player(const std::string& name, const std::string& symbol);
-    bool makeMove(Board& board);
-    std::string get_name()const{return name;}
-    std::string get_symbol()const{return symbol;}
-    int getUserChoice()const;
-private:
+    virtual ~Player();
+    virtual bool makeMove(Board& board)=0;
+    std::string get_name()const;
+    std::string get_symbol()const;
+protected:
     std::string name;
     std::string symbol;
 };

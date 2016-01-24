@@ -1,11 +1,13 @@
-#include "tictactoe.h"
-#include "player.h"
 #include "board.h"
+#include "player.h"
+#include "humanPlayer.h"
+#include "tictactoe.h"
+#include "computerPlayer.h"
 #include <iostream>
 #include <string>
 
 TicTacToe::TicTacToe():
-board(new Board),player1(new Player("p1","x")),player2(new Player("p2","y")) 
+board(new Board),player1(new HumanPlayer("p1","x")),player2(new ComputerPlayer("p2","y"))
 {}
 
 TicTacToe::~TicTacToe(){
